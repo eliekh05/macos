@@ -86,6 +86,7 @@ jobs:
       - name: Upload Release Assets
         run: |
           gh release upload ${{ env.new_version }} \
+            --repo eliekh05/macos \
             macos:${{ env.new_version }}.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
