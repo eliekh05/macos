@@ -47,7 +47,6 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build --no-cache -t eliekh05/macos:${{ env.new_version }} .
-          docker tag eliekh05/macos:${{ env.new_version }} eliekh05/macos:latest
 
       - name: Save Docker Image to File
         run: |
