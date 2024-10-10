@@ -9,14 +9,12 @@ ARG DEBCONF_NONINTERACTIVE_SEEN="true"
 
 RUN set -eu && \
     apt-get update && \
-    apt-get -y install \
-    fdisk \
-    mtools && \
+    apt-get -y install fdisk mtools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY --chmod=755 ./src/build.sh /run
-COPY --chmod=644 ./config.plist /run
+COPY --chmod=755 ./src/build.sh /run/
+COPY --chmod=644 ./config.plist /run/
 
 ADD $REPO_KVM_OPENCORE/releases/download/$VERSION_KVM_OPENCORE/OpenCore-$VERSION_KVM_OPENCORE.iso.gz /tmp/opencore.iso.gz
 
@@ -37,8 +35,7 @@ ARG DEBCONF_NONINTERACTIVE_SEEN="true"
 
 RUN set -eu && \
     apt-get update && \
-    apt-get --no-install-recommends -y install \
-    python3 && \
+    apt-get --no-install-recommends -y install python3 && \
     apt-get clean && \
     echo "$VERSION_ARG" > /run/version && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
